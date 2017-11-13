@@ -3,7 +3,7 @@
 #include <string.h>
 
 char ** parse_args(char* line) {
-    char ** args = (char **) malloc(5*sizeof(char*));
+    char ** args = (char **) calloc(5, sizeof(char*));
     int index = 0;
     while (line) {
         args[index] = strsep(&line, " ");
@@ -13,7 +13,6 @@ char ** parse_args(char* line) {
 }
 
 void printarr(char** args) {
-    int index = 0;
     int i;
     printf("[");
     for (i = 0; i < 5; i++) {
@@ -34,7 +33,7 @@ int main() {
     printarr(line2_args);
     printf("\n");
 
-    printf("Running with results from: ls -al\n");
+    printf("Running execvp with results from: ls -al\n");
     execvp("ls", line1_args);
 
     return 0;
